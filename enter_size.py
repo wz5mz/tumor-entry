@@ -1,6 +1,14 @@
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 import numpy as np
+import sys
+
+filename = sys.argv[0]
+sheetname = sys.argv[1]
+mouseno = sys.argv[2]
+width = sys.argv[3]
+length = sys.argv[4]
+date = sys.argv[5]
 
 
 def enter_size(filename, sheetname, mouseno, width, length, date):
@@ -39,3 +47,6 @@ def enter_size(filename, sheetname, mouseno, width, length, date):
     # cell_list = worksheet.range('A1:B2')
     # print(cell_list)
     # worksheet.update_cells(cell_list)
+
+
+enter_size(filename, sheetname, mouseno, width, length, date)
