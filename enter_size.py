@@ -21,9 +21,7 @@ def enter_size(filename, sheetname, mouseno, width, length, date):
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
-        '/data/data/com.termux/files/home/storage/downloads/Tumor Entry-551c381a9a9c.json', scope)
-    # credentials = ServiceAccountCredentials.from_json_keyfile_name(
-    #    'c:/users/wade/downloads/Tumor Entry-551c381a9a9c.json', scope)
+        '/data/data/com.termux/files/home/storage/downloads/Tumor Entry-f14983e25cb2.json', scope)
     gc = gspread.authorize(credentials)
     worksheet = gc.open(filename).worksheet(sheetname)
 
