@@ -3,12 +3,12 @@ import gspread
 import numpy as np
 import sys
 
-filename = sys.argv[0]
-sheetname = sys.argv[1]
-mouseno = sys.argv[2]
-width = sys.argv[3]
-length = sys.argv[4]
-date = sys.argv[5]
+filename = sys.argv[1]
+sheetname = sys.argv[2]
+mouseno = sys.argv[3]
+width = float(sys.argv[4])
+length = float(sys.argv[5])
+date = sys.argv[6]
 
 
 def enter_size(filename, sheetname, mouseno, width, length, date):
@@ -20,6 +20,8 @@ def enter_size(filename, sheetname, mouseno, width, length, date):
              'https://www.googleapis.com/auth/drive']
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
         '/data/data/com.termux/files/home/storage/downloads/Tumor Entry-551c381a9a9c.json', scope)
+    # credentials = ServiceAccountCredentials.from_json_keyfile_name(
+    #    'c:/users/wade/downloads/Tumor Entry-551c381a9a9c.json', scope)
     gc = gspread.authorize(credentials)
     worksheet = gc.open(filename).worksheet(sheetname)
 
