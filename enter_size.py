@@ -8,14 +8,12 @@ import re
 
 filename = sys.argv[1]
 sheetname = sys.argv[2]
-print(sys.argv[3])
-print(type(sys.argv[3]))
-width, length, mouseno = sys.argv[3].splitlines()
-date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[4]).group(0)
-#mouseno = re.search('\d+', sys.argv[3]).group(0)
-#width = float(re.search('(\d*\.\d+|\d+)', sys.argv[4]).group(0))
-#length = float(re.search('(\d*\.\d+|\d+)', sys.argv[5]).group(0))
-# date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[6]).group(0)
+# width, length, mouseno = sys.argv[3].splitlines()
+# date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[4]).group(0)
+mouseno = re.search('\d+', sys.argv[3]).group(0)
+width = float(re.search('(\d*\.\d+|\d+)', sys.argv[4]).group(0))
+length = float(re.search('(\d*\.\d+|\d+)', sys.argv[5]).group(0))
+date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[6]).group(0)
 
 
 def enter_size(filename, sheetname, mouseno, width, length, date):
