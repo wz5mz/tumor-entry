@@ -52,7 +52,8 @@ def enter_size(filename, sheetname, mouseno, width, length, date):
 
     # update - faster if only 1 call is made
     print(cell_list)
-    worksheet.update_cells(cell_list)
+    if not worksheet.cell(myRow, myCol+1).value and not worksheet.cell(myRow, myCol+2).value and not worksheet.cell(myRow, myCol+3).value:
+        worksheet.update_cells(cell_list)
 
 
 enter_size(filename, sheetname, mouseno, width, length, date)
