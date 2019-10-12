@@ -54,9 +54,9 @@ measurements = [re.search('(\d*\.\d+|\d+)', i).group(0) for i in sys.argv[4].spl
 #
 #     if not worksheet.cell((myRow, myCol+1)).value and not worksheet.cell((myRow, myCol+2)).value and not worksheet.cell((myRow, myCol+3)).value:
 #         worksheet.update_cells(cell_list)
-
-if len(measurements) % 2 == 0
-    enter_size_v2(filename, sheetname, mouseno, measurements, date)
+#
+#if len(measurements) % 2 == 0
+#    enter_size_v2(filename, sheetname, mouseno, measurements, date)
 
 print(measurements)
 time.sleep(5)
