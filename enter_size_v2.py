@@ -11,7 +11,7 @@ filename = sys.argv[1]
 sheetname = sys.argv[2]
 mouseno = re.search('\d+', sys.argv[3]).group(0)
 measurements = [re.search('(\d*\.\d+|\d+)', i).group(0) for i in sys.argv[4].split(',')]
-date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[5]).group(0)
+# date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[5]).group(0)
 #
 # def enter_size_v2(filename, sheetname, mouseno, measurements, date):
 #     # authenticate and read google spreadsheet
