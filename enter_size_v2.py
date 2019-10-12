@@ -1,3 +1,5 @@
 #! /data/data/com.termux/files/usr/bin/env python3
+import sys
 
-print(filename, sheetname, mouseno, width, length, date)
+userinput = sys.argv[3]
+print(userinput)
