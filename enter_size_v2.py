@@ -4,6 +4,6 @@ import time
 
 userinput = sys.argv[3]
 print(userinput)
-type(userinput)
-len(userinput)
+print(type(userinput))
+print(len(userinput))
 time.sleep(5)
