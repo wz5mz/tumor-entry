@@ -10,8 +10,7 @@ import time
 filename = sys.argv[1]
 sheetname = sys.argv[2]
 mouseno = re.search('\d+', sys.argv[3]).group(0)
-measurements = sys.argv[4]
-# measurements = [i for i in sys.argv[4] if i!=',']
+measurements = sys.argv[4].split(',')
 #width = float(re.search('(\d*\.\d+|\d+)', sys.argv[4]).group(0))
 #length = float(re.search('(\d*\.\d+|\d+)', sys.argv[5]).group(0))
 date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[5]).group(0)
