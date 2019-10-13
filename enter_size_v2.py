@@ -5,7 +5,6 @@ import pygsheets
 import numpy as np
 import sys
 import re
-import time
 
 filename = sys.argv[1]
 sheetname = sys.argv[2]
@@ -55,5 +54,3 @@ def enter_size_v2(filename, sheetname, mouseno, measurements, date):
 
 if len(measurements) % 2 == 0 and len(measurements) > 1:
    enter_size_v2(filename, sheetname, mouseno, measurements, date)
-
-time.sleep(3)
