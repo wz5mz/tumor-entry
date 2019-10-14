@@ -71,4 +71,4 @@ def enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, caus
                                pygsheets.Cell((myRow, 6), causeofdeath)])
 
 if len(measurements) % 2 == 0 and len(measurements) > 1:
-   enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, causeofdeath)
+   enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, causeofdeath, dateofdeath)
