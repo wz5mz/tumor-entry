@@ -13,7 +13,7 @@ measurements = [re.search('(\d*\.\d+|\d+)', i).group(0) for i in sys.argv[4].spl
 date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[5]).group(0)
 isdead = sys.argv[6]
 causeofdeath = sys.argv[7]
-dateofdeath = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[8]).group(0)
+dateofdeath = sys.argv[8]
 
 def enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, causeofdeath, dateofdeath):
     # authenticate and read google spreadsheet
@@ -65,6 +65,7 @@ def enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, caus
         and not worksheet.cell((myRow,4)).value
         and not worksheet.cell((myRow,5)).value
         and not worksheet.cell((myRow,6)).value):
+        dateofdeath = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[8]).group(0)
         worksheet.update_cells([pygsheets.Cell((myRow, 4), dateofdeath),
                                pygsheets.Cell((myRow, 5), 1),
                                pygsheets.Cell((myRow, 6), causeofdeath)])
