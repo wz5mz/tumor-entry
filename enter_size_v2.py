@@ -11,8 +11,11 @@ sheetname = sys.argv[2]
 mouseno = re.search('\d+', sys.argv[3]).group(0)
 measurements = [re.search('(\d*\.\d+|\d+)', i).group(0) for i in sys.argv[4].split(',')]
 date = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[5]).group(0)
+isdead = sys.argv[6]
+causeofdeath = sys.argv[7]
+dateofdeath = re.search('\d\d\d\d-[0-1]\d-[0-3]\d', sys.argv[8]).group(0)
 
-def enter_size_v2(filename, sheetname, mouseno, measurements, date):
+def enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, causeofdeath, dateofdeath):
     # authenticate and read google spreadsheet
     scope = ['https://spreadsheets.google.com/feeds',
              'https://www.googleapis.com/auth/drive']
@@ -21,11 +24,11 @@ def enter_size_v2(filename, sheetname, mouseno, measurements, date):
     sheet = gc.open(filename)
     worksheet = sheet.worksheet_by_title(sheetname)
     cell_list = []
-    # find the row to enter user input
+    # find the row to write to
     row_headers = np.array([i[0] for i in worksheet.get_values(start=(1,1), end=(worksheet.rows,1), returnas='matrix')])
     myRow = int(np.where(row_headers == mouseno)[0][0] + 1)
     print(myRow)
-    # find the col to enter user input
+    # find the col to write to
     column_headers = worksheet.get_values(start=(1,1), end=(1,worksheet.cols), returnas='matrix')[0]
     while column_headers[-1] == '':
         column_headers.pop()
@@ -49,8 +52,22 @@ def enter_size_v2(filename, sheetname, mouseno, measurements, date):
     print(myCol)
     print(cell_list)
 
-    if not worksheet.cell((myRow, myCol+1)).value and not worksheet.cell((myRow, myCol+2)).value and not worksheet.cell((myRow, myCol+3)).value:
+    # if columns are running low, add more
+    if myCol+3 >= worksheet.cols:
+        worksheet.add_cols(100)
+
+    if (not worksheet.cell((myRow, myCol+1)).value
+        and not worksheet.cell((myRow, myCol+2)).value
+        and not worksheet.cell((myRow, myCol+3)).value):
         worksheet.update_cells(cell_list)
 
+    if (isdead == 'on'
+        and not worksheet.cell((myRow,4)).value
+        and not worksheet.cell((myRow,5)).value
+        and not worksheet.cell((myRow,6)).value):
+        worksheet.update_cells([pygsheets.Cell((myRow, 4), dateofdeath),
+                               pygsheets.Cell((myRow, 5), 1),
+                               pygsheets.Cell((myRow, 6), causeofdeath)])
+
 if len(measurements) % 2 == 0 and len(measurements) > 1:
-   enter_size_v2(filename, sheetname, mouseno, measurements, date)
+   enter_size_v2(filename, sheetname, mouseno, measurements, date, isdead, causeofdeath)
